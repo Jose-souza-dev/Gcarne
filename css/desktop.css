@@ -1,0 +1,142 @@
+/* Resete total da página */
+* {
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Classes estranhas */
+.displayNone {
+    display: none !important;
+}
+
+header.cabecalho {
+    width: 100%;
+    height: 60px;
+    /* background: yellow; */
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav.top {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+}
+
+nav.top ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+nav.top ul li {
+    width: 120px;
+    padding: 0 5px;
+    border-right: 1px solid #0026ff;
+    /* background-color: #fff; */
+    text-align: center;
+}
+
+nav.top ul a {
+    text-decoration: none;
+    color: #0026ff;
+}
+
+/* área de botões do menu para carnê */
+
+.menu-carne {
+    width: 60%;
+    height: 50px;
+    /* background:  blue; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    gap: 10px;
+}
+
+
+.btn-menu {
+    width: 140px;
+    height: 30px;
+    background-color: #0026ff;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-menu:hover {
+    background: #0026FF;
+    color: yellow;
+    border-radius: 20px;
+    border-bottom: 2px solid rgb(94, 94, 94);
+}
+
+
+/* chegamos a área da folha principal*/
+
+main.folha {
+    width: 810px;
+    height: 1140px;
+    border: 1px solid #ccc;
+    margin: 10px auto;
+}
+
+section.folinha {
+    width: 85%;
+    border: 1px solid #ccc;
+    margin: 10px 38px;
+    padding: 10px  10px 0 38px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+}
+
+div.empresa {
+    width: 45%;
+    border-right: 2px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+div.cliente {
+    width: 45%;
+    display: flex;
+    border:none;
+    flex-direction: column;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.entrada{
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+    outline:none;
+}
+
+
+div.container_qrcode {
+    width: 25%;
+    height: 140px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    margin-top: -120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

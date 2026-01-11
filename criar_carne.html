@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/desktop.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <nav class="top">
+            <ul>
+                <li><a href="index.html" class="destaque">Gcarnê</a></li>
+                <li><a href="#">Como usar</a></li>
+                <li><a href="criar_carne.html">Criar carnê</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="menu-carne">
+        <button id="btn-nome" class="btn-menu">Nome</button>
+        <button id="btn-valor" class="btn-menu">Valor</button>
+        <button id="btn-dt_venc" class="btn-menu">Data venc</button>
+        <button id="btn-dt_pag" class="btn-menu">Data pag</button>
+        <button id="btn-aten" class="btn-menu">Atendente</button>
+        <button id="btn-qrcode" class="btn-menu">Qrcode</button>
+        <button id="btn-fechar" class="btn-menu">Imprimir</button>
+    </section>
+    <main class="folha">
+        <section class="folinha">
+            <div class="empresa" id="empresa">
+                <label for="nome">
+                    Nome: <br>
+                    <input type="text" id="nome" class="entrada">
+                </label>
+                <label for="valor">
+                    Valor: <br>
+                    <input type="number" id="valor" class="entrada">
+                </label>
+                <label for="dtvenc">
+                    Data venc: <br>
+                    <input type="date" id="dtvenc" class="entrada">
+                </label>
+                <label for="dtpag">
+                    Data pag: <br>
+                    <input type="text" id="dtpag" class="entrada">
+                </label>
+                <label for="atendente">
+                    Atendente: <br>
+                    <input type="text" id="atendente" class="entrada">
+                </label>
+
+
+                <!-- fim do lado empresa -->
+
+
+
+            </div>
+            <div class="cliente" id="cliente">
+                <label for="nome2">
+                    Nome: <br>
+                    <input type="text" id="nome2" class="entrada">
+                </label>
+                <label for="valor2">
+                    Valor: <br>
+                    <input type="number" id="valor2" class="entrada">
+                </label>
+                <label for="dtvenc2">
+                    Data venc: <br>
+                    <input type="date" id="dtvenc2" class="entrada">
+                </label>
+                <label for="dtpag2">
+                    Data pag: <br>
+                    <input type="text" id="dtpag2" class="entrada">
+                </label>
+                <label for="atendente2">
+                    Atendente: <br>
+                    <input type="text" id="atendente2" class="entrada">
+                </label>
+            </div>
+            <div class="container_qrcode" id="container_qrcode">
+                <br>
+                <p>
+                    Pagar com Pix.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>
