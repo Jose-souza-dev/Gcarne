@@ -98,6 +98,67 @@ function clickDtAten() {
 }
 clickDtAten();
 
+// triplicando a section folhinha
+function triplicarFolha() {
+        let triplicar = document.getElementById('btn-triplicar');
+        triplicar.addEventListener('click', () => {
+                const container = document.querySelector('.folha');
+                const folinhaOriginal = document.querySelector('.folinha');
+
+                if (folinhaOriginal) {
+                        // 1. Pega a data original (do primeiro input de data que encontrar)
+                        const inputDataOriginal = folinhaOriginal.querySelector('input[type="date"]');
+                        const dataValorOriginal = inputDataOriginal.value;
+
+                        // Só prossegue se houver uma data preenchida
+                        if (!dataValorOriginal) {
+                                alert("Por favor, preencha a data de vencimento na primeira folha antes de triplicar.");
+                                return;
+                        }
+
+                        // 2. Loop para criar as 2 cópias
+                        for (let i = 1; i <= 3; i++) {
+                                const copia = folinhaOriginal.cloneNode(true);
+
+                                // 3. Sincroniza os valores de texto (nome, valor, etc) que o cloneNode não leva
+                                const inputsOriginais = folinhaOriginal.querySelectorAll('input');
+                                const inputsCopia = copia.querySelectorAll('input');
+
+                                inputsOriginais.forEach((input, index) => {
+                                        inputsCopia[index].value = input.value;
+                                });
+
+                                // 4. Lógica para somar o mês na data
+                                // Usamos "T00:00:00" para evitar problemas de fuso horário que mudam o dia
+                                let dataObjeto = new Date(dataValorOriginal + "T00:00:00");
+
+                                // Adiciona i meses (na primeira volta 1 mês, na segunda 2 meses)
+                                dataObjeto.setMonth(dataObjeto.getMonth() + i);
+
+                                // Formata a data de volta para AAAA-MM-DD
+                                const ano = dataObjeto.getFullYear();
+                                const mes = String(dataObjeto.getMonth() + 1).padStart(2, '0');
+                                const dia = String(dataObjeto.getDate()).padStart(2, '0');
+                                const novaDataStr = `${ano}-${mes}-${dia}`;
+
+                                // 5. Aplica a nova data em todos os campos de data da cópia (empresa e cliente)
+                                const datasNaCopia = copia.querySelectorAll('input[type="date"]');
+                                datasNaCopia.forEach(inputData => {
+                                        inputData.value = novaDataStr;
+                                });
+
+                                // Adiciona o clone na tela
+                                container.appendChild(copia);
+                        }
+                }
+        });
+}
+
+triplicarFolha();
+
+
+// -------------------------------------------------------------
+
 function clickQrcode() {
         // vamos pegar o botão de qrcode
         let btnQrcode = document.querySelector("#btn-qrcode");
