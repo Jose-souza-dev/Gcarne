@@ -92,16 +92,56 @@ main.folha {
     margin: 10px auto;
 }
 
+.picture {
+    width: 100px;
+    aspect-ratio: 1/1;
+    background: rgb(243, 243, 243);
+    background-image: url(../images/file.png);
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    color: #7e7e7e;
+    border: 1px dashed #7e7e7e;
+    transition: .3s;
+}
+
+.picture:hover {
+    border: 1px dashed #4b66ff;
+    background: rgb(243, 243, 243);
+    background-image: url(../images/file.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+}
+
+.picture__img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+#picture__input {
+    display: none;
+}
+
 section.folinha {
     width: 85%;
     border: 1px solid #ccc;
     margin: 10px 38px;
-    padding: 10px  10px 0 38px;
+    padding: 10px 10px 0 38px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap:5px;
+    gap: 5px;
 }
 
 div.empresa {
@@ -115,28 +155,35 @@ div.empresa {
 div.cliente {
     width: 45%;
     display: flex;
-    border:none;
+    border: none;
     flex-direction: column;
     font-size: 12px;
     margin-left: 10px;
 }
 
-.entrada{
+.entrada {
     width: 250px;
     border: none;
     border-bottom: 1px solid #ccc;
     margin: 10px 0;
-    outline:none;
+    outline: none;
 }
 
 
 div.container_qrcode {
     width: 25%;
-    height: 140px;
+    height: 240px;
     border: 1px solid #ccc;
     font-size: 12px;
-    margin-top: -120px;
+    margin-top: -10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+p#aviso {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    font-style: italic;
 }

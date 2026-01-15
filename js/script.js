@@ -1,206 +1,136 @@
-// Mudando o titulo do site para Gcarne
+// 1. Configurações Iniciais e Título
+document.title = "Gcarnê";
 
-var titulo = document.querySelector("title");
-titulo.innerText = "Gcarnê";
+// 2. Elementos Fixos
+const cabecalho = document.querySelector(".cabecalho");
+const menuCarne = document.querySelector(".menu-carne");
+const btnImprimir = document.querySelector("#btn-fechar");
 
-// -------------------------------------------------------
-
-var cabecalho = window.document.querySelector(".cabecalho");
-var fechar = document.querySelector("#btn-fechar");
-var menuCarne = document.querySelector(".menu-carne")
-
-fechar.addEventListener("click", function () {
-        cabecalho.classList.toggle("displayNone");
-        menuCarne.classList.toggle("displayNone");
+// Função para imprimir (esconde o menu antes)
+btnImprimir.addEventListener("click", function () {
+    cabecalho.classList.add("displayNone");
+    menuCarne.classList.add("displayNone");
+    window.print();
+    // Remove a classe depois de imprimir para o menu voltar
+    setTimeout(() => {
+        cabecalho.classList.remove("displayNone");
+        menuCarne.classList.remove("displayNone");
+    }, 1000);
 });
 
-//  vamos pegar os botões das opções e quando eles forem clicados apareçam os inputs na folha 
-// do carnê
+// 3. Funções de Toggle (Mostrar/Esconder campos)
+// Corrigido os seletores que estavam sem o "]" final
+function configurarToggles() {
+    const mapeamento = [
+        { btn: "#btn-nome", labels: ["nome", "nome2"] },
+        { btn: "#btn-valor", labels: ["valor", "valor2"] },
+        { btn: "#btn-dt_venc", labels: ["dtvenc", "dtvenc2"] },
+        { btn: "#btn-dt_pag", labels: ["dtpag", "dtpag2"] },
+        { btn: "#btn-aten", labels: ["atendente", "atendente2"] }
+    ];
 
-function clickNome() {
-        // vamos pegar primeiro os  btns
-        let btnNome = document.querySelector("#btn-nome");
-
-        btnNome.addEventListener("click", function () {
-                let labelNome = document.querySelector("label[for='nome']"); // pegando a label pelo for
-                let labelNome2 = document.querySelector("label[for='nome2']");
-
-                // aplicando a classe displayNone
-                labelNome.classList.toggle("displayNone"); // quando for clicado, o toggle mostra ou esconde
-                labelNome2.classList.toggle("displayNone");
+    mapeamento.forEach(item => {
+        const botao = document.querySelector(item.btn);
+        botao.addEventListener("click", () => {
+            item.labels.forEach(labelFor => {
+                const el = document.querySelector(`label[for='${labelFor}']`);
+                if (el) el.classList.toggle("displayNone");
+            });
         });
+    });
 }
-clickNome();
+configurarToggles();
 
-function clickValor() {
-        // vamos pegar primeiro os  btns
+// 4. Lógica do QR Code (Preview e Clonagem)
+function configurarQrcode() {
+    const btnQrcode = document.querySelector("#btn-qrcode");
+    const containerQr = document.querySelector("#container_qrcode");
+    const inputFile = document.querySelector("#picture__input");
 
-        let btnValor = document.querySelector("#btn-valor");
+    // Mostrar/Esconder container do QR Code
+    btnQrcode.addEventListener("click", () => {
+        containerQr.classList.toggle("displayNone");
+    });
 
-        btnValor.addEventListener("click", function () {
-                let labelValor = document.querySelector("label[for='valor']");
-                let labelValor2 = document.querySelector("label[for='valor2'");
-
-                // aplicando a classe displayNone
-
-                labelValor.classList.toggle("displayNone"); // quando for clicado, o toggle mostra ou esconde
-                labelValor2.classList.toggle("displayNone");
-        });
+    // Carregar imagem e aplicar a todos os campos de preview existentes
+    inputFile.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const previews = document.querySelectorAll(".picture__image");
+                previews.forEach(p => {
+                    p.innerHTML = `<img src="${event.target.result}" style="max-width:100%; display:block;">`;
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 }
-clickValor();
+configurarQrcode();
 
-function clickDtVenc() {
-        // vamos pegar primeiro os  btns
-        let btnDtVenc = document.querySelector("#btn-dt_venc");
-
-        btnDtVenc.addEventListener("click", function () {
-                let labelDtVenc = document.querySelector("label[for='dtvenc']");
-                let labelDtVenc2 = document.querySelector("label[for='dtvenc2'");
-
-                // aplicando a classe displayNone
-
-                labelDtVenc.classList.toggle("displayNone"); // quando for clicado, o toggle mostra ou esconde
-                labelDtVenc2.classList.toggle("displayNone");
-        });
-}
-clickDtVenc();
-
-function clickDtPag() {
-        // vamos pegar primeiro os  btns
-        let btnDtPag = document.querySelector("#btn-dt_pag");
-
-        btnDtPag.addEventListener("click", function () {
-                let labelDtPag = document.querySelector("label[for='dtpag']");
-                let labelDtpag2 = document.querySelector("label[for='dtpag2'");
-
-                // aplicando a classe displayNone
-
-                labelDtPag.classList.toggle("displayNone"); // quando for clicado, o toggle mostra ou esconde
-                labelDtpag2.classList.toggle("displayNone");
-        });
-}
-clickDtPag();
-
-
-function clickDtAten() {
-        // vamos pegar primeiro os  btns
-        let btnAten = document.querySelector("#btn-aten");
-
-        btnAten.addEventListener("click", function () {
-                let labelAten = document.querySelector("label[for='atendente']");
-                let labelAten2 = document.querySelector("label[for='atendente2'");
-
-                // aplicando a classe displayNone
-
-                labelAten.classList.toggle("displayNone"); // quando for clicado, o toggle mostra ou esconde
-                labelAten2.classList.toggle("displayNone");
-        });
-}
-clickDtAten();
-
-// triplicando a section folhinha
+// 5. Função Triplicar Folha (Ajustada para clonar tudo corretamente)
 function triplicarFolha() {
-        let triplicar = document.getElementById('btn-triplicar');
-        triplicar.addEventListener('click', () => {
-                const container = document.querySelector('.folha');
-                const folinhaOriginal = document.querySelector('.folinha');
+    const btnTriplicar = document.getElementById('btn-triplicar');
+    
+    btnTriplicar.addEventListener('click', () => {
+        const containerPai = document.querySelector('.folha');
+        const folinhaOriginal = document.querySelector('.folinha');
+        const dataOriginal = document.getElementById('dtvenc').value;
 
-                if (folinhaOriginal) {
-                        // 1. Pega a data original (do primeiro input de data que encontrar)
-                        const inputDataOriginal = folinhaOriginal.querySelector('input[type="date"]');
-                        const dataValorOriginal = inputDataOriginal.value;
+        if (!dataOriginal) {
+            alert("Por favor, preencha a data de vencimento na primeira folha.");
+            return;
+        }
 
-                        // Só prossegue se houver uma data preenchida
-                        if (!dataValorOriginal) {
-                                alert("Por favor, preencha a data de vencimento na primeira folha antes de triplicar.");
-                                return;
-                        }
+        // Criar 3 novas cópias
+        for (let i = 1; i <= 3; i++) {
+            const copia = folinhaOriginal.cloneNode(true);
 
-                        // 2. Loop para criar as 2 cópias
-                        for (let i = 1; i <= 3; i++) {
-                                const copia = folinhaOriginal.cloneNode(true);
-
-                                // 3. Sincroniza os valores de texto (nome, valor, etc) que o cloneNode não leva
-                                const inputsOriginais = folinhaOriginal.querySelectorAll('input');
-                                const inputsCopia = copia.querySelectorAll('input');
-
-                                inputsOriginais.forEach((input, index) => {
-                                        inputsCopia[index].value = input.value;
-                                });
-
-                                // 4. Lógica para somar o mês na data
-                                // Usamos "T00:00:00" para evitar problemas de fuso horário que mudam o dia
-                                let dataObjeto = new Date(dataValorOriginal + "T00:00:00");
-
-                                // Adiciona i meses (na primeira volta 1 mês, na segunda 2 meses)
-                                dataObjeto.setMonth(dataObjeto.getMonth() + i);
-
-                                // Formata a data de volta para AAAA-MM-DD
-                                const ano = dataObjeto.getFullYear();
-                                const mes = String(dataObjeto.getMonth() + 1).padStart(2, '0');
-                                const dia = String(dataObjeto.getDate()).padStart(2, '0');
-                                const novaDataStr = `${ano}-${mes}-${dia}`;
-
-                                // 5. Aplica a nova data em todos os campos de data da cópia (empresa e cliente)
-                                const datasNaCopia = copia.querySelectorAll('input[type="date"]');
-                                datasNaCopia.forEach(inputData => {
-                                        inputData.value = novaDataStr;
-                                });
-
-                                // Adiciona o clone na tela
-                                container.appendChild(copia);
-                        }
+            // 1. Sincronizar valores de todos os inputs (cloneNode não copia valores digitados)
+            const inputsOriginais = folinhaOriginal.querySelectorAll('input');
+            const inputsCopia = copia.querySelectorAll('input');
+            
+            inputsOriginais.forEach((input, index) => {
+                if (input.type !== 'file') {
+                    inputsCopia[index].value = input.value;
                 }
-        });
-}
+            });
 
+            // 2. Sincronizar o QR Code se ele já existir
+            const previewOriginal = folinhaOriginal.querySelector(".picture__image").innerHTML;
+            copia.querySelector(".picture__image").innerHTML = previewOriginal;
+
+            // 3. Calcular nova data (+ i meses)
+            let novaData = new Date(dataOriginal + "T00:00:00");
+            novaData.setMonth(novaData.getMonth() + i);
+            
+            const dataFormatada = novaData.toISOString().split('T')[0];
+            
+            // Aplicar a nova data nos inputs de data da cópia
+            const inputsDataCopia = copia.querySelectorAll('input[type="date"]');
+            inputsDataCopia.forEach(input => input.value = dataFormatada);
+
+            // Adicionar ao container principal
+            containerPai.appendChild(copia);
+        }
+    });
+}
 triplicarFolha();
 
-
-// -------------------------------------------------------------
-
-function clickQrcode() {
-        // vamos pegar o botão de qrcode
-        let btnQrcode = document.querySelector("#btn-qrcode");
-        let divContainer_qrcode = document.querySelector("#container_qrcode");
-
-        // aplicando classe displayNone nas labels
-
-        btnQrcode.addEventListener("click", () => {
-                divContainer_qrcode.classList.toggle("displayNone");
-        });
-
-}
-
-clickQrcode();
-
-
-
-
-// Seleciona os pares de campos (origem -> destino)
-const campos = [
-        { origem: 'nome', destino: 'nome2' },
-        { origem: 'valor', destino: 'valor2' },
-        { origem: 'dtvenc', destino: 'dtvenc2' },
-        { origem: 'dtpag', destino: 'dtpag2' },
-        { origem: 'atendente', destino: 'atendente2' }
+// 6. Espelhamento em Tempo Real (Empresa -> Cliente)
+const camposEspelho = [
+    { orig: 'nome', dest: 'nome2' },
+    { orig: 'valor', dest: 'valor2' },
+    { orig: 'dtvenc', dest: 'dtvenc2' },
+    { orig: 'dtpag', dest: 'dtpag2' },
+    { orig: 'atendente', dest: 'atendente2' }
 ];
 
-// Adiciona um evento de escuta para cada campo
-campos.forEach(par => {
-        const inputOrigem = document.getElementById(par.origem);
-        const inputDestino = document.getElementById(par.destino);
-
-        inputOrigem.addEventListener('input', () => {
-                inputDestino.value = inputOrigem.value;
-        });
-});
-// 2. Lógica específica para o campo de Valor (Moeda R$)
-const inputValor = document.getElementById('valor');
-const inputValorDestino = document.getElementById('valor2');
-
-
-// Botão de Imprimir
-document.getElementById('btn-fechar').addEventListener('click', () => {
-        window.print();
+camposEspelho.forEach(par => {
+    const origem = document.getElementById(par.orig);
+    const destino = document.getElementById(par.dest);
+    origem.addEventListener('input', () => {
+        destino.value = origem.value;
+    });
 });
