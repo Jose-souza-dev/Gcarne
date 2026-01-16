@@ -1,28 +1,137 @@
 <!DOCTYPE html>
-<html lang="pt-bt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/desktop.css">
+    <title>Gcarnê - Gerador de Carnês Profissionais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tangara-seledon.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+    </style>
 </head>
 
-<body>
-    <header class="cabecalho">
-        <nav class="top">
-            <ul>
-                <li><a href="index.html" class="destaque">Gcarnê</a></li>
-                <li><a href="index.html">Como usar</a></li>
-                <li><a href="criar_carne.html">Criar carnê</a></li>
-            </ul>
-        </nav>
+<body class="bg-gray-50 text-gray-900">
+
+    <nav class="p-6 bg-white shadow-sm">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-800 text-blue-700 tracking-tighter">G<span class="text-gray-900">carnê</span></h1>
+            <a href="criar_carne.html"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition">Criar
+                Carnê</a>
+        </div>
+    </nav>
+
+    <header class="gradient-bg text-white py-20 px-6">
+        <div class="container mx-auto text-center max-w-4xl">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                Gere carnês profissionais em segundos, não em horas.
+            </h2>
+            <p class="text-xl md:text-2xl mb-10 text-blue-100">
+                O Gcarnê automatiza o preenchimento e integra QR Codes de pagamento para você receber mais rápido.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="criar_carne.html"
+                    class="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-lg">Quero
+                    Começar Agora</a>
+                <a href="como_utilizar.html"
+                    class="border border-white/40 hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition">Ver
+                    como funciona</a>
+            </div>
+        </div>
     </header>
-    <main class="folha">
 
-    </main>
+    <section class="py-20 px-6 container mx-auto">
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Campos Inteligentes</h3>
+                <p class="text-gray-600">Esqueça o trabalho manual. Nossos campos já vêm pré-programados para
+                    preenchimento ultra-rápido de parcelas e datas.</p>
+            </div>
 
-    <script src="js/script.js" defer></script>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">QR Code Integrado</h3>
+                <p class="text-gray-600">Facilite o pagamento para seu cliente. Adicione o Qrcode diretamente no carnê e
+                    diminua a inadimplência.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-purple-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Pronto para Imprimir</h3>
+                <p class="text-gray-600">Gere PDFs otimizados para impressão ou envie diretamente pelo WhatsApp de forma
+                    organizada e profissional.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="funciona" class="bg-gray-100 py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-16">Como funciona o Gcarnê</h2>
+            <div class="flex flex-col md:flex-row justify-between gap-8 max-w-5xl mx-auto">
+                <div class="flex-1">
+                    <span class="text-4xl font-black text-blue-200 block mb-4">01</span>
+                    <h4 class="font-bold text-lg mb-2">Click nos botões que você deseja</h4>
+                    <p class="text-gray-600">Preencha nome, valor da  parcela e data. O sistema faz o resto.</p>
+                </div>
+                <div class="flex-1">
+                    <span class="text-4xl font-black text-blue-200 block mb-4">02</span>
+                    <h4 class="font-bold text-lg mb-2">Busque o QrCode</h4>
+                    <p class="text-gray-600">Lembre-se que o Qrcode já deve está salvo no seu computador e com o valor da parcela.</p>
+                </div>
+                <div class="flex-1">
+                    <span class="text-4xl font-black text-blue-200 block mb-4">03</span>
+                    <h4 class="font-bold text-lg mb-2">Baixe o PDF</h4>
+                    <p class="text-gray-600">Tudo pronto! Seu carnê está organizado e pronto para uso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 text-center">
+        <div class="container mx-auto bg-blue-600 rounded-3xl p-12 text-white shadow-2xl">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">Pronto para facilitar suas cobranças?</h2>
+            <p class="text-xl mb-10 opacity-90 text-blue-100">Junte-se a centenas de empreendedores que usam o Gcarnê.
+            </p>
+            <a href="criar_carne.html"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition ts002b">Criar
+                Carnê
+            </a>
+
+        </div>
+    </section>
+
+    <footer class="py-10 border-t border-gray-200 text-center text-gray-500 text-sm">
+        <p>© 2026 Gcarnê - Todos os direitos reservados.</p>
+    </footer>
+
 </body>
 
 </html>

@@ -1,0 +1,244 @@
+/*
+* All color classes can be applied to any html tag. 
+* Parrot framework only works with colors to help better 
+* in development, no need to type colors in css.
+*/
+.ts000c{color:#000}
+/*background*/
+.ts000b{background-color: #000;}
+/*------------------------------------------*/
+.ts001c{color:#fff}
+/*background*/
+.ts001b{background-color: #fff;}
+/*-----------------------------------------*/
+
+.ts002c{color:#56CBF9}
+.ts003c{color: #7FBEEB}
+.ts004c{color: #AFBED1}
+.ts005c{color: #EAC5D8}
+.ts006c{color: #DBD8F0}
+/* backgrounds*/
+.ts000b{background-color:#000} 
+.ts001b{background-color:#fff} 
+.ts002b{background-color:#56CBF9}
+.ts003b{background-color: #7FBEEB}
+.ts004b{background-color: #AFBED1}
+.ts005b{background-color: #EAC5D8}
+.ts006b{background-color: #DBD8F0}
+/*------------------------------------------*/
+.ts007c{color:#023E8A}
+.ts008c{color:#0077B6}
+.ts009c{color:#0096C7}
+.ts010c{color:#48CAE4}
+.ts011c{color:#ADE8F4}
+
+/*background*/
+.ts007b{background-color:#023E8A}
+.ts008b{background-color:#0077B6}
+.ts009b{background-color:#0096C7}
+.ts010b{background-color:#48CAE4}
+.ts011b{background-color:#ADE8F4}
+/*-------------------------------------------*/
+
+
+.ts012c{color:#FFADAD}
+.ts013c{color:#FFD6A5}
+.ts014c{color:#FDFFB6}
+.ts015c{color:#CAFFBF}
+.ts016c{color:#9BF6FF}
+.ts017c{color:#A0C4FF}
+.ts018c{color:#BDB2FF}
+.ts019c{color:#FFC6FF}
+.ts020c{color:#FFFFFC}
+
+/* background */
+.ts012b{background-color:#FFADAD}
+.ts013b{background-color:#FFD6A5}
+.ts014b{background-color:#FDFFB6}
+.ts015b{background-color:#CAFFBF}
+.ts016b{background-color:#9BF6FF}
+.ts017b{background-color:#A0C4FF}
+.ts018b{background-color:#BDB2FF}
+.ts019b{background-color:#FFC6FF}
+.ts020b{background-color:#FFFFFC}
+/*-------------------------------------------*/
+
+.ts021c{color:#E63946}
+.ts022c{color:#F1FAEE}
+.ts023c{color:#A8DADC}
+.ts024c{color:#457B9D}
+.ts025c{color:#1D3557}
+
+/*background*/
+.ts021b{background-color:#E63946}
+.ts022b{background-color:#F1FAEE}
+.ts023b{background-color:#A8DADC}
+.ts024b{background-color:#457B9D}
+.ts025b{background-color:#1D3557}
+/*-------------------------------------------*/
+
+.ts026c{color:#03071E}
+.ts027c{color:#370617}
+.ts028c{color:#6a040f}
+.ts029c{color:#9d0208}
+.ts030c{color:#d00000}
+.ts031c{color:#dc2f02}
+.ts032c{color:#e85d04}
+.ts033c{color:#f48c06}
+.ts034c{color:#faa307}
+.ts035c{color:#ffba08}
+
+/*background*/
+
+.ts026b{background-color:#03071E}
+.ts027b{background-color:#370617}
+.ts028b{background-color:#6a040f}
+.ts029b{background-color:#9d0208}
+.ts030b{background-color:#d00000}
+.ts031b{background-color:#dc2f02}
+.ts032b{background-color:#e85d04}
+.ts033b{background-color:#f48c06}
+.ts034b{background-color:#faa307}
+.ts035b{background-color:#ffba08}
+/*-------------------------------------------*/
+
+.ts036c{color:#14213D}
+.ts037c{color:#FCA311}
+.ts037c{color:#E5E5E5}
+.ts039c{color:#FFFFFF}
+
+/*background*/
+.ts036b{background-color:#14213D}
+.ts037b{background-color:#FCA311}
+.ts037b{background-color:#E5E5E5}
+.ts039b{background-color:#FFFFFF}
+/*------------------------------------------*/
+
+.ts040c{color:#006D77}
+.ts041c{color:#83C5BE}
+.ts042c{color:#EDF6F9}
+.ts043c{color:#FFDDD2}
+.ts044c{color:#E29578}
+
+/*Background*/
+.ts040b{background-color:#006D77}
+.ts041b{background-color:#83C5BE}
+.ts042b{background-color:#EDF6F9}
+.ts043b{background-color:#FFDDD2}
+.ts044b{background-color:#E29578}
+/*---------------------------------------------*/
+
+.ts045c{color:#000814}
+.ts046c{color:#001D3D}
+.ts047c{color:#003566}
+.ts048c{color:#FFC300}
+.ts049c{color:#FFD60A}
+
+/*Background*/
+.ts045b{background-color:#000814}
+.ts046b{background-color:#001D3D}
+.ts047b{background-color:#003566}
+.ts048b{background-color:#FFC300}
+.ts049b{background-color:#FFD60A}
+/*-----------------------------------------------------*/
+
+.ts050c{color:#10002B}
+.ts051c{color:#240046}
+.ts052c{color:#3C096C}
+.ts053c{color:#5A189A}
+.ts054c{color:#7B2CBF}
+.ts055c{color:#9D4EDD}
+.ts056c{color:#C77DFF}
+.ts057c{color:#E0AAFF}
+/*Background*/
+.ts050b{background-color:#10002B}
+.ts051b{background-color:#240046}
+.ts052b{background-color:#3C096C}
+.ts053b{background-color:#5A189A}
+.ts054b{background-color:#7B2CBF}
+.ts055b{background-color:#9D4EDD}
+.ts056b{background-color:#C77DFF}
+.ts057b{background-color:#E0AAFF}
+/*----------------------------------------------------*/
+
+.ts058c{color:#000000}
+.ts059c{color:#111111}
+.ts060c{color:#232323}
+.ts061c{color:#343434}
+.ts062c{color:#464646}
+.ts063c{color:#575757}
+.ts064c{color:#696969}
+.ts065c{color:#7a7a7a}
+
+/*background*/
+
+.ts058b{background-color:#000000}
+.ts059b{background-color:#111111}
+.ts060b{background-color:#232323}
+.ts061b{background-color:#343434}
+.ts062b{background-color:#464646}
+.ts063b{background-color:#575757}
+.ts064b{background-color:#696969}
+.ts065b{background-color:#7a7a7a}
+/*-----------------------------------------------*/
+
+
+/* minha cor*/
+
+.ts066c{color:#000}
+.ts067c{color:#14213D}
+.ts068c{color: #FCA311}
+.ts069c{color: #E5E5E5}
+.pf070c{color: #fff}
+/*background*/
+.ts066b{background-color:#000}
+.ts067b{background-color:#14213D}
+.ts068b{background-color: #FCA311}
+.ts069b{background-color: #E5E5E5}
+.ts070b{background-color: #fff}
+/*------------------------------------------------*/
+
+.ts071c{color:#FF1053}
+.ts072c{color: #6C6EA0}
+.ts073c{color: #66C7F4}
+.ts074c{color: #C1CAD6}
+.ts075c{color: #fff}
+/*background*/
+.ts071b{background-color:#FF1053}
+.ts072b{background-color: #6C6EA0}
+.ts073b{background-color: #66C7F4}
+.ts074b{background-color: #C1CAD6}
+.ts075b{background-color: #fff}
+/*----------------------------------------------*/
+
+
+.ts076c{color: #004B23}
+.ts077c{color: #006400}
+.ts078c{color: #007200}
+.ts079c{color: #008000}
+.ts080c{color: #38B000}
+.ts081c{color: #70E000}
+.ts082c{color: #9EF01A}
+.ts083c{color: #CCFF33}
+.ts084c{color:#069}
+
+
+/*---------background----------------------------*/
+
+.ts076b{background-color: #004B23}
+.ts077b{background-color: #006400}
+.ts078b{background-color: #007200}
+.ts079b{background-color: #008000}
+.ts080b{background-color: #38B000}
+.ts081b{background-color: #70E000}
+.ts082b{background-color: #9EF01A}
+.ts083b{background-color: #CCFF33}
+.ts084b{background-color: #068}
+
+
+.ts085c{
+    color:#ff0000;
+}
+.ts085b{
+    background:#ff0000;
+}
