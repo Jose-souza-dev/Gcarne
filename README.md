@@ -16,7 +16,7 @@ com creadiário.
 <br><br>
 2º Depois de todos os campos adiconados é hora de preenche-los, lembrando 
 de deixar os campos data pag e atendente sem preencher, pois não sabemos quem irá
-receber o pagamento e nem quando será feito, se pagou antes do vencimento ou atrasado.
+receber o pagamento e nem quando será feito ou se pagou antes do vencimento ou atrasado. <br>
 OBS: Existe um lado do cliente, que é o que fica com ele e o lado da empresa ou loja. O lado
 da loja é a parte que fica o Qrcode. Na hora que você está digitando no lado do cliente automaticamente
 é preenchido o lado da empresa.
