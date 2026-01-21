@@ -13,6 +13,7 @@ com creadiário.
 ## Como utilizar
 
 1º Você vai adiconar os campos que você quer e se você tiver Qrcode adicione também.
+<br>
 2º Depois de todos os campos adiconados é hora de preencher os campos, lembrando 
 de deixar os campos data pag e atendente sem preencher, pois não sabemos quem irá
 receber o pagamento e nem quando será feito, se pagou em dia ou atrasado.
