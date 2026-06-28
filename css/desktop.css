@@ -187,3 +187,273 @@ p#aviso {
     text-align: center;
     font-style: italic;
 }
+
+/*AREA DE LOGIN*/
+/* Reset e Definições Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Container Principal (Layout Bifocal Desktop) */
+.login-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+/* --- Coluna da Esquerda (Design/Brand) --- */
+.brand-side {
+    position: relative;
+    flex: 1.2;
+    background: #069; /* Sua Cor Base */
+    background: linear-gradient(135deg, #069 0%, #034566 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+    color: #ffffff;
+}
+
+/* Elemento visual moderno usando a cor verde (#4ad111) */
+.brand-side::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #4ad111;
+    border-radius: 50%;
+    bottom: -50px;
+    left: -50px;
+    opacity: 0.15;
+    filter: blur(40px);
+}
+
+.brand-content {
+    margin-auto: 0;
+    max-width: 480px;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 140px;
+}
+
+.logo-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #4ad111; /* Sua cor verde */
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.brand-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.brand-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- Coluna da Direita (Formulário) --- */
+.form-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    background-color: #ffffff;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 420px;
+}
+
+.form-header {
+    margin-bottom: 32px;
+}
+
+.form-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: #858585; /* Sua cor cinza */
+    font-size: 0.95rem;
+}
+
+/* Botão do Google */
+.btn-google {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333333;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-google:hover {
+    background-color: #f9f9f9;
+    border-color: #c0c0c0;
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Separador */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.separator span {
+    padding: 0 12px;
+    font-size: 0.85rem;
+    color: #858585; /* Sua cor cinza */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Formulário e Inputs */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #333333;
+}
+
+.label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-password {
+    font-size: 0.825rem;
+    color: #069; /* Sua cor azul */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #069; /* Foco usando a cor azul */
+}
+
+/* Botão de Enviar (Uso da cor verde para conversão/sucesso) */
+.btn-submit {
+    width: 100%;
+    background-color: #4ad111; /* Sua cor verde */
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #3cb30c; /* Tom levemente mais escuro do seu verde para o hover */
+}
+
+.btn-submit:active {
+    transform: scale(0.99);
+}
+
+/* Rodapé do Formulário */
+.form-footer {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.form-footer p {
+    font-size: 0.9rem;
+    color: #858585; /* Sua cor cinza */
+}
+
+.form-footer a {
+    color: #069; /* Sua cor azul */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/*AREA DE LOGIN*/
+

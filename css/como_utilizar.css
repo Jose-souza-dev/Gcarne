@@ -1,0 +1,16 @@
+*{margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; text-decoration:none; list-style:none; outline:none; border:none;}
+
+.container_tutorial{
+    width: 80%;
+    min-height: 100vh;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column; 
+    padding: 10px;
+    margin: 0 auto;
+}
+.tutorial-texto{
+    width: 70%;
+    text-align: left;
+    color: rgb(59, 59, 59);
+}
