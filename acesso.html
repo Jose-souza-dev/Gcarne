@@ -82,7 +82,8 @@
             console.log("Tentando validar código:", code);
 
             try {
-                const docRef = doc(db, "codigos", code);
+                // Alterado para procurar na coleção "codigo" (singular)
+                const docRef = doc(db, "codigo", code);
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
