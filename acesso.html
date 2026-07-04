@@ -74,34 +74,35 @@
         const input = document.getElementById('access-code');
 
         btn.addEventListener('click', async () => {
-            const code = input.value.trim();
+            const code = input.value.trim().toUpperCase(); // Garante que será maiúsculo
             if (!code) return;
 
             btn.disabled = true;
             btn.innerText = "Validando...";
+            console.log("Tentando validar código:", code);
 
             try {
-                // Procura o código na coleção "codigos"
                 const docRef = doc(db, "codigos", code);
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
+                    console.log("Dados encontrados:", data);
 
                     if (data.ativo === false) {
                         alert("Este código já foi usado ou está expirado!");
                     } else {
-                        // Código válido!
                         localStorage.setItem('gcarne_access_token', 'valid_user');
                         alert("Acesso liberado com sucesso!");
                         window.location.href = "criar_carne.html";
                     }
                 } else {
-                    alert("Código não encontrado. Verifique se digitou corretamente.");
+                    console.error("Documento não existe no Firestore!");
+                    alert("Código não encontrado. Verifique se o ID do documento no Firestore é exatamente: " + code);
                 }
             } catch (error) {
-                console.error(error);
-                alert("Erro ao validar código. Tente novamente.");
+                console.error("Erro completo do Firebase:", error);
+                alert("Erro técnico: " + error.message);
             } finally {
                 btn.disabled = false;
                 btn.innerText = "Ativar Agora";
