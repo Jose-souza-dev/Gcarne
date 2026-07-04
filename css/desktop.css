@@ -199,6 +199,9 @@ p#aviso {
 
 body {
     background-color: #f4f6f9;
+}
+
+body.login-page {
     height: 100vh;
     display: flex;
     justify-content: center;

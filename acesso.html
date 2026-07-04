@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Acesso | Gcarnê</title>
+    <link rel="stylesheet" href="css/desktop.css">
+    <style>
+        .access-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .access-container h2 { margin-bottom: 20px; color: #1a1a1a; }
+        .access-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        .btn-validate {
+            background: #4ad111;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+        .support-link { margin-top: 20px; display: block; color: #069; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body style="background: #f4f6f9; display: block;">
+    <div class="access-container">
+        <h2>Ative seu Acesso</h2>
+        <p style="color: #666; margin-bottom: 20px;">Insira o código enviado após o pagamento da sua mensalidade.</p>
+
+        <input type="text" id="access-code" placeholder="CÓDIGO-0000" maxlength="15">
+        <button class="btn-validate" id="btn-validar">Ativar Agora</button>
+
+        <a href="https://wa.me/SEU_NUMERO" class="support-link" target="_blank">Não tem um código? Falar com suporte</a>
+        <br>
+        <a href="#" id="btn-logout-acesso" style="color: red; font-size: 12px; text-decoration: none;">Sair da conta</a>
+    </div>
+
+    <script type="module" src="js/auth-handler.js"></script>
+    <script>
+        // Lógica temporária de validação (depois você pode mudar para algo no banco de dados)
+        document.getElementById('btn-validar').addEventListener('click', () => {
+            const code = document.getElementById('access-code').value.trim();
+
+            // Defina aqui o seu código mestre ou lógica de verificação
+            if (code === "GCARNE2024") {
+                localStorage.setItem('gcarne_access_token', 'valid_user');
+                alert("Acesso liberado!");
+                window.location.href = "criar_carne.html";
+            } else {
+                alert("Código inválido! Entre em contato com o suporte.");
+            }
+        });
+    </script>
+</body>
+</html>

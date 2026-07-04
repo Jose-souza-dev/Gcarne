@@ -69,23 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnGoogle) {
         btnGoogle.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log("Botão clicado!");
             loginGoogle();
         });
     }
 
-    // Formulário de E-mail
-    const loginForm = document.querySelector(".login-form");
-    if (loginForm) {
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const email = document.querySelector("#email").value;
-            const password = document.querySelector("#password").value;
-            loginEmail(email, password);
-        });
-    }
-
-    // Botão Sair
+    // Botão Sair (Geral)
     const btnLogout = document.querySelector("#btn-logout");
     if (btnLogout) {
         btnLogout.addEventListener("click", (e) => {
@@ -93,19 +81,46 @@ document.addEventListener("DOMContentLoaded", () => {
             logout();
         });
     }
+
+    // Botão Sair específico da página de acesso
+    const btnLogoutAcesso = document.querySelector("#btn-logout-acesso");
+    if (btnLogoutAcesso) {
+        btnLogoutAcesso.addEventListener("click", (e) => {
+            e.preventDefault();
+            logout();
+        });
+    }
 });
 
-// --- MONITOR DE ESTADO ---
+// --- MONITOR DE ESTADO E SEGURANÇA ---
 onAuthStateChanged(auth, (user) => {
     const path = window.location.pathname;
-    const isLoginPage = path.includes("login.html");
+    const isLoginPage = path.includes("login.html") || path.endsWith("/");
     const isCreatePage = path.includes("criar_carne.html");
+    const isAccessPage = path.includes("acesso.html");
+
+    // Verifica se o usuário já validou o código de acesso
+    const hasAccess = localStorage.getItem('gcarne_access_token') === 'valid_user';
 
     if (user) {
         console.log("Usuário logado:", user.email);
-        if (isLoginPage) window.location.href = "criar_carne.html";
+
+        if (!hasAccess) {
+            // Se está logado mas não tem código, só pode ficar na página de acesso
+            if (!isAccessPage) {
+                window.location.href = "acesso.html";
+            }
+        } else {
+            // Se tem acesso e está na login ou acesso, vai para a criação
+            if (isLoginPage || isAccessPage) {
+                window.location.href = "criar_carne.html";
+            }
+        }
     } else {
         console.log("Nenhum usuário logado.");
-        if (isCreatePage) window.location.href = "login.html";
+        // Se não está logado, só pode ficar na login
+        if (isCreatePage || isAccessPage) {
+            window.location.href = "login.html";
+        }
     }
 });

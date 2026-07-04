@@ -1,26 +1,26 @@
-// 1. Configurações Iniciais e Título
-document.title = "Gcarnê";
+// Garantir que o script só rode quando o DOM estiver pronto
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Script principal inicializado");
+    document.title = "Gcarnê";
 
-// 2. Elementos Fixos
-const cabecalho = document.querySelector(".cabecalho");
-const menuCarne = document.querySelector(".menu-carne");
-const btnImprimir = document.querySelector("#btn-fechar");
+    // 1. Elementos Fixos
+    const cabecalho = document.querySelector(".cabecalho");
+    const menuCarne = document.querySelector(".menu-carne");
+    const btnImprimir = document.querySelector("#btn-fechar");
 
-// Função para imprimir (esconde o menu antes)
-btnImprimir.addEventListener("click", function () {
-    cabecalho.classList.add("displayNone");
-    menuCarne.classList.add("displayNone");
-    window.print();
-    // Remove a classe depois de imprimir para o menu voltar
-    setTimeout(() => {
-        cabecalho.classList.remove("displayNone");
-        menuCarne.classList.remove("displayNone");
-    }, 1000);
-});
+    if (btnImprimir) {
+        btnImprimir.addEventListener("click", () => {
+            if (cabecalho) cabecalho.classList.add("displayNone");
+            if (menuCarne) menuCarne.classList.add("displayNone");
+            window.print();
+            setTimeout(() => {
+                if (cabecalho) cabecalho.classList.remove("displayNone");
+                if (menuCarne) menuCarne.classList.remove("displayNone");
+            }, 1000);
+        });
+    }
 
-// 3. Funções de Toggle (Mostrar/Esconder campos)
-// Corrigido os seletores que estavam sem o "]" final
-function configurarToggles() {
+    // 2. Funções de Toggle (Mostrar/Esconder campos)
     const mapeamento = [
         { btn: "#btn-nome", labels: ["nome", "nome2"] },
         { btn: "#btn-valor", labels: ["valor", "valor2"] },
@@ -31,106 +31,123 @@ function configurarToggles() {
 
     mapeamento.forEach(item => {
         const botao = document.querySelector(item.btn);
-        botao.addEventListener("click", () => {
-            item.labels.forEach(labelFor => {
-                const el = document.querySelector(`label[for='${labelFor}']`);
-                if (el) el.classList.toggle("displayNone");
+        if (botao) {
+            botao.addEventListener("click", () => {
+                item.labels.forEach(labelFor => {
+                    const todosOsLabels = document.querySelectorAll(`label[for='${labelFor}']`);
+                    todosOsLabels.forEach(el => {
+                        el.classList.toggle("displayNone");
+                    });
+                });
             });
-        });
+        }
     });
-}
-configurarToggles();
 
-// 4. Lógica do QR Code (Preview e Clonagem)
-function configurarQrcode() {
+    // 3. Lógica do QR Code
     const btnQrcode = document.querySelector("#btn-qrcode");
     const containerQr = document.querySelector("#container_qrcode");
     const inputFile = document.querySelector("#picture__input");
 
-    // Mostrar/Esconder container do QR Code
-    btnQrcode.addEventListener("click", () => {
-        containerQr.classList.toggle("displayNone");
-    });
+    if (btnQrcode) {
+        btnQrcode.addEventListener("click", () => {
+            if (containerQr) containerQr.classList.toggle("displayNone");
+        });
+    }
 
-    // Carregar imagem e aplicar a todos os campos de preview existentes
-    inputFile.addEventListener("change", function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const previews = document.querySelectorAll(".picture__image");
-                previews.forEach(p => {
-                    p.innerHTML = `<img src="${event.target.result}" style="max-width:100%; display:block;">`;
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-}
-configurarQrcode();
+    if (inputFile) {
+        inputFile.addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const previews = document.querySelectorAll(".picture__image");
+                    previews.forEach(p => {
+                        p.innerHTML = `<img src="${event.target.result}" style="max-width:100%; display:block;">`;
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 
-// 5. Função Triplicar Folha (Ajustada para clonar tudo corretamente)
-function triplicarFolha() {
+    // 4. Função Triplicar Folha
     const btnTriplicar = document.getElementById('btn-triplicar');
-    
-    btnTriplicar.addEventListener('click', () => {
-        const containerPai = document.querySelector('.folha');
-        const folinhaOriginal = document.querySelector('.folinha');
-        const dataOriginal = document.getElementById('dtvenc').value;
+    if (btnTriplicar) {
+        btnTriplicar.addEventListener('click', () => {
+            const containerPai = document.querySelector('.folha');
+            const folinhaOriginal = document.querySelector('.folinha');
+            const elDtvenc = document.getElementById('dtvenc');
 
-        if (!dataOriginal) {
-            alert("Por favor, preencha a data de vencimento na primeira folha.");
-            return;
+            if (!elDtvenc || !elDtvenc.value) {
+                alert("Por favor, preencha a data de vencimento na primeira folha.");
+                return;
+            }
+
+            const dataOriginal = elDtvenc.value;
+
+            for (let i = 1; i <= 3; i++) {
+                if (!folinhaOriginal || !containerPai) break;
+
+                const copia = folinhaOriginal.cloneNode(true);
+
+                // Limpar IDs das cópias para evitar duplicidade (embora usemos querySelectorAll)
+                // Mas manter o "for" nos labels é essencial para os botões funcionarem
+
+                const inputsOriginais = folinhaOriginal.querySelectorAll('input');
+                const inputsCopia = copia.querySelectorAll('input');
+
+                inputsOriginais.forEach((input, index) => {
+                    if (input.type !== 'file') {
+                        inputsCopia[index].value = input.value;
+                    }
+                });
+
+                const previewOriginal = folinhaOriginal.querySelector(".picture__image").innerHTML;
+                copia.querySelector(".picture__image").innerHTML = previewOriginal;
+
+                let novaData = new Date(dataOriginal + "T00:00:00");
+                novaData.setMonth(novaData.getMonth() + i);
+                const dataFormatada = novaData.toISOString().split('T')[0];
+
+                const inputsDataCopia = copia.querySelectorAll('input[type="date"]');
+                inputsDataCopia.forEach(input => input.value = dataFormatada);
+
+                containerPai.appendChild(copia);
+            }
+        });
+    }
+});
+
+// 5. Espelhamento (Fora do DOMContentLoaded para usar delegação global)
+document.addEventListener('input', (e) => {
+    const mapeamentoEspelho = {
+        'nome': 'nome2',
+        'valor': 'valor2',
+        'dtvenc': 'dtvenc2',
+        'dtpag': 'dtpag2',
+        'atendente': 'atendente2'
+    };
+
+    const idOrigem = e.target.id;
+    const idDestino = mapeamentoEspelho[idOrigem];
+
+    if (idDestino) {
+        const folinha = e.target.closest('.folinha');
+        if (folinha) {
+            // Procure o destino DENTRO da mesma folha
+            const campoDestino = folinha.querySelector(`input[id^='${idDestino.substring(0, idDestino.length - 1)}']`) || folinha.querySelector(`#${idDestino}`);
+            // Simplificando a busca do destino:
+            const inputs = folinha.querySelectorAll('input');
+            let destino;
+            if (idOrigem === 'nome') destino = folinha.querySelector('#nome2');
+            if (idOrigem === 'valor') destino = folinha.querySelector('#valor2');
+            if (idOrigem === 'dtvenc') destino = folinha.querySelector('#dtvenc2');
+            if (idOrigem === 'dtpag') destino = folinha.querySelector('#dtpag2');
+            if (idOrigem === 'atendente') destino = folinha.querySelector('#atendente2');
+
+            if (destino) {
+                destino.value = e.target.value;
+            }
         }
-
-        // Criar 3 novas cópias
-        for (let i = 1; i <= 3; i++) {
-            const copia = folinhaOriginal.cloneNode(true);
-
-            // 1. Sincronizar valores de todos os inputs (cloneNode não copia valores digitados)
-            const inputsOriginais = folinhaOriginal.querySelectorAll('input');
-            const inputsCopia = copia.querySelectorAll('input');
-            
-            inputsOriginais.forEach((input, index) => {
-                if (input.type !== 'file') {
-                    inputsCopia[index].value = input.value;
-                }
-            });
-
-            // 2. Sincronizar o QR Code se ele já existir
-            const previewOriginal = folinhaOriginal.querySelector(".picture__image").innerHTML;
-            copia.querySelector(".picture__image").innerHTML = previewOriginal;
-
-            // 3. Calcular nova data (+ i meses)
-            let novaData = new Date(dataOriginal + "T00:00:00");
-            novaData.setMonth(novaData.getMonth() + i);
-            
-            const dataFormatada = novaData.toISOString().split('T')[0];
-            
-            // Aplicar a nova data nos inputs de data da cópia
-            const inputsDataCopia = copia.querySelectorAll('input[type="date"]');
-            inputsDataCopia.forEach(input => input.value = dataFormatada);
-
-            // Adicionar ao container principal
-            containerPai.appendChild(copia);
-        }
-    });
-}
-triplicarFolha();
-
-// 6. Espelhamento em Tempo Real (Empresa -> Cliente)
-const camposEspelho = [
-    { orig: 'nome', dest: 'nome2' },
-    { orig: 'valor', dest: 'valor2' },
-    { orig: 'dtvenc', dest: 'dtvenc2' },
-    { orig: 'dtpag', dest: 'dtpag2' },
-    { orig: 'atendente', dest: 'atendente2' }
-];
-
-camposEspelho.forEach(par => {
-    const origem = document.getElementById(par.orig);
-    const destino = document.getElementById(par.dest);
-    origem.addEventListener('input', () => {
-        destino.value = origem.value;
-    });
+    }
 });
