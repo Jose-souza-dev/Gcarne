@@ -36,15 +36,16 @@
             cursor: pointer;
             width: 100%;
         }
+        .btn-validate:disabled { background: #ccc; }
         .support-link { margin-top: 20px; display: block; color: #069; text-decoration: none; font-size: 14px; }
     </style>
 </head>
 <body style="background: #f4f6f9; display: block;">
     <div class="access-container">
         <h2>Ative seu Acesso</h2>
-        <p style="color: #666; margin-bottom: 20px;">Insira o código enviado após o pagamento da sua mensalidade.</p>
+        <p style="color: #666; margin-bottom: 20px;">Insira o código enviado após o pagamento.</p>
 
-        <input type="text" id="access-code" placeholder="CÓDIGO-0000" maxlength="15">
+        <input type="text" id="access-code" placeholder="CÓDIGO-0000" maxlength="20">
         <button class="btn-validate" id="btn-validar">Ativar Agora</button>
 
         <a href="https://wa.me/SEU_NUMERO" class="support-link" target="_blank">Não tem um código? Falar com suporte</a>
@@ -52,21 +53,61 @@
         <a href="#" id="btn-logout-acesso" style="color: red; font-size: 12px; text-decoration: none;">Sair da conta</a>
     </div>
 
-    <script type="module" src="js/auth-handler.js"></script>
-    <script>
-        // Lógica temporária de validação (depois você pode mudar para algo no banco de dados)
-        document.getElementById('btn-validar').addEventListener('click', () => {
-            const code = document.getElementById('access-code').value.trim();
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-            // Defina aqui o seu código mestre ou lógica de verificação
-            if (code === "GCARNE2024") {
-                localStorage.setItem('gcarne_access_token', 'valid_user');
-                alert("Acesso liberado!");
-                window.location.href = "criar_carne.html";
-            } else {
-                alert("Código inválido! Entre em contato com o suporte.");
+        const firebaseConfig = {
+            apiKey: "AIzaSyDl1xc8pNFKO0ntbwitBFN0wVM2qAHtaSU",
+            authDomain: "authentic-32ad2.firebaseapp.com",
+            projectId: "authentic-32ad2",
+            storageBucket: "authentic-32ad2.firebasestorage.app",
+            messagingSenderId: "889249025251",
+            appId: "1:889249025251:web:2502a96379d529246c89d6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const btn = document.getElementById('btn-validar');
+        const input = document.getElementById('access-code');
+
+        btn.addEventListener('click', async () => {
+            const code = input.value.trim();
+            if (!code) return;
+
+            btn.disabled = true;
+            btn.innerText = "Validando...";
+
+            try {
+                // Procura o código na coleção "codigos"
+                const docRef = doc(db, "codigos", code);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+
+                    if (data.ativo === false) {
+                        alert("Este código já foi usado ou está expirado!");
+                    } else {
+                        // Código válido!
+                        localStorage.setItem('gcarne_access_token', 'valid_user');
+                        alert("Acesso liberado com sucesso!");
+                        window.location.href = "criar_carne.html";
+                    }
+                } else {
+                    alert("Código não encontrado. Verifique se digitou corretamente.");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao validar código. Tente novamente.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Ativar Agora";
             }
         });
     </script>
+    <script type="module" src="js/auth-handler.js"></script>
 </body>
 </html>
