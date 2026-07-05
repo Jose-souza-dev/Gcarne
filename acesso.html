@@ -56,9 +56,9 @@
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // Usando as credenciais do projeto Authentic-32ad2 (conforme seu temporario.txt)
         const firebaseConfig = {
             apiKey: "AIzaSyDl1xc8pNFKO0ntbwitBFN0wVM2qAHtaSU",
             authDomain: "authentic-32ad2.firebaseapp.com",
@@ -70,6 +70,16 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        let currentUserEmail = null;
+
+        // Monitora o usuário logado para saber o e-mail
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUserEmail = user.email;
+            }
+        });
 
         const btn = document.getElementById('btn-validar');
         const input = document.getElementById('access-code');
@@ -77,47 +87,53 @@
         btn.addEventListener('click', async () => {
             const code = input.value.trim().toUpperCase();
             if (!code) return;
+            if (!currentUserEmail) {
+                alert("Você precisa estar logado com o Google primeiro!");
+                return;
+            }
 
             btn.disabled = true;
             btn.innerText = "Validando...";
 
             try {
-                // Tenta procurar na coleção "codigo" (singular)
-                console.log("Consultando banco para:", code);
-                const docRef = doc(db, "codigo", code);
-                const docSnap = await getDoc(docRef);
+                // Tenta achar na coleção "codigo" ou "codigos"
+                let docRef = doc(db, "codigo", code);
+                let docSnap = await getDoc(docRef);
+
+                if (!docSnap.exists()) {
+                    docRef = doc(db, "codigos", code);
+                    docSnap = await getDoc(docRef);
+                }
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    if (data.ativo === true) {
+
+                    if (data.ativo === false) {
+                        alert("Este código está desativado!");
+                    } else if (data.email_vinculado && data.email_vinculado !== currentUserEmail) {
+                        // CÓDIGO JÁ TEM DONO E NÃO É O USUÁRIO ATUAL
+                        alert("Este código já está vinculado a outra conta Google!");
+                    } else {
+                        // Se não tem dono, vincula agora
+                        if (!data.email_vinculado) {
+                            await updateDoc(docRef, {
+                                email_vinculado: currentUserEmail
+                            });
+                            console.log("Código vinculado ao e-mail:", currentUserEmail);
+                        }
+
+                        // Libera o acesso
                         localStorage.setItem('gcarne_access_token', 'valid_user');
                         alert("Acesso liberado com sucesso!");
                         window.location.href = "criar_carne.html";
-                    } else {
-                        alert("Este código está desativado!");
                     }
                 } else {
-                    // SE NÃO ACHAR NA "codigo", TENTA NA "codigos" (plural)
-                    const docRefPlural = doc(db, "codigos", code);
-                    const docSnapPlural = await getDoc(docRefPlural);
-
-                    if (docSnapPlural.exists()) {
-                        const dataP = docSnapPlural.data();
-                        if (dataP.ativo === true) {
-                            localStorage.setItem('gcarne_access_token', 'valid_user');
-                            alert("Acesso liberado com sucesso!");
-                            window.location.href = "criar_carne.html";
-                        } else {
-                            alert("Este código está desativado!");
-                        }
-                    } else {
-                        alert("Código não encontrado no banco de dados. Verifique se o ID do documento é exatamente: " + code);
-                    }
+                    alert("Código não encontrado no banco de dados.");
                 }
             } catch (error) {
-                console.error("Erro detalhado:", error);
+                console.error("Erro:", error);
                 if (error.code === 'permission-denied') {
-                    alert("Erro de Permissão: Você precisa ajustar as 'Rules' no console do Firebase para permitir a leitura.");
+                    alert("Erro de Permissão: Ajuste as 'Rules' do Firestore para permitir 'update'.");
                 } else {
                     alert("Erro técnico: " + error.message);
                 }
