@@ -56,8 +56,9 @@
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        // Usando as credenciais do projeto Authentic-32ad2 (conforme seu temporario.txt)
         const firebaseConfig = {
             apiKey: "AIzaSyDl1xc8pNFKO0ntbwitBFN0wVM2qAHtaSU",
             authDomain: "authentic-32ad2.firebaseapp.com",
@@ -74,36 +75,52 @@
         const input = document.getElementById('access-code');
 
         btn.addEventListener('click', async () => {
-            const code = input.value.trim().toUpperCase(); // Garante que será maiúsculo
+            const code = input.value.trim().toUpperCase();
             if (!code) return;
 
             btn.disabled = true;
             btn.innerText = "Validando...";
-            console.log("Tentando validar código:", code);
 
             try {
-                // Alterado para procurar na coleção "codigo" (singular)
+                // Tenta procurar na coleção "codigo" (singular)
+                console.log("Consultando banco para:", code);
                 const docRef = doc(db, "codigo", code);
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    console.log("Dados encontrados:", data);
-
-                    if (data.ativo === false) {
-                        alert("Este código já foi usado ou está expirado!");
-                    } else {
+                    if (data.ativo === true) {
                         localStorage.setItem('gcarne_access_token', 'valid_user');
                         alert("Acesso liberado com sucesso!");
                         window.location.href = "criar_carne.html";
+                    } else {
+                        alert("Este código está desativado!");
                     }
                 } else {
-                    console.error("Documento não existe no Firestore!");
-                    alert("Código não encontrado. Verifique se o ID do documento no Firestore é exatamente: " + code);
+                    // SE NÃO ACHAR NA "codigo", TENTA NA "codigos" (plural)
+                    const docRefPlural = doc(db, "codigos", code);
+                    const docSnapPlural = await getDoc(docRefPlural);
+
+                    if (docSnapPlural.exists()) {
+                        const dataP = docSnapPlural.data();
+                        if (dataP.ativo === true) {
+                            localStorage.setItem('gcarne_access_token', 'valid_user');
+                            alert("Acesso liberado com sucesso!");
+                            window.location.href = "criar_carne.html";
+                        } else {
+                            alert("Este código está desativado!");
+                        }
+                    } else {
+                        alert("Código não encontrado no banco de dados. Verifique se o ID do documento é exatamente: " + code);
+                    }
                 }
             } catch (error) {
-                console.error("Erro completo do Firebase:", error);
-                alert("Erro técnico: " + error.message);
+                console.error("Erro detalhado:", error);
+                if (error.code === 'permission-denied') {
+                    alert("Erro de Permissão: Você precisa ajustar as 'Rules' no console do Firebase para permitir a leitura.");
+                } else {
+                    alert("Erro técnico: " + error.message);
+                }
             } finally {
                 btn.disabled = false;
                 btn.innerText = "Ativar Agora";
