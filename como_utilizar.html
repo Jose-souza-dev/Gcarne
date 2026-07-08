@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/tangara-seledon.css">
+    <link rel="stylesheet" href="css/desktop.css">     
     <link rel="stylesheet" href="css/como_utilizar.css">
     <style>
         body {
@@ -18,14 +20,64 @@
         }
     </style>
 </head>
+
 <body>
+
+    <header class="cabecalho">
+        <nav class="top">
+            <ul>
+                <li><a href="index.html" class="destaque">Gcarnê</a></li>
+                <li><a href="como_utilizar.html">Como usar</a></li>
+                <li><a href="criar_carne.html">Criar carnê</a></li>
+                <li><a href="#" id="btn-logout">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="container_tutorial">
         <h1>Como utilizar o Gcarnê</h1>
         <p class="tutorial-texto">
-            Seja bem-vindo ao Gcarnê, a ferramenta que vai facilitar a criação de 
-            carnês profissionais para o seu negócio. Aqui está um guia passo a passo 
+            Seja bem-vindo ao Gcarnê, a ferramenta que vai facilitar a criação de
+            carnês profissionais para o seu negócio. Aqui está um guia passo a passo
             para ajudá-lo a começar:
+        </p>
+        <br>
+        <p class="tutorial-texto">
+            Depois de ter feito o login, você verá um menu na parte superior com as opções disponíveis. 
+            click no link criar carnê para começar a criar seu primeiro carnê. Você será direcionado para uma página 
+            onde poderá inserir as informações necessárias.
+        </p>
+        <p class="tutorial-texto">
+            Você chegará na página que terá todas as informações que você precisa preencher 
+            para criar o seu carnê.
+            <br>
+             <b>1 - Nome:</b> Insira o nome do cliente que receberá o carnê.<br>
+            <b>2 -  Valor:</b> Digite o valor da parcela. <br>
+            <b>3 - Data de venc:</b> Selecione a data em que a parcela vencerá.<br>
+            <b>OBS:. </b> Se você quiser criar um carnê com parcelas mensais, você pode preencher a primeira data de vencimento e depois clicar em <b>+ folhas</b>. O sistema irá gerar automaticamente as datas de vencimento para as próximas parcelas, mantendo o mesmo dia do mês. Por exemplo, se a primeira parcela vencer em 
+            15/06/2024, a próxima será 15/07/2024, e assim por diante.<br> 
+            <b>4 - Data de pag:</b> Insira a data em que a parcela foi paga (opcional). As vezes
+            o pagamento é atrasado e não terá como apagar a data já preenchida.<br>
+            <b>5 -  Atendente:</b> Também é opcional, porque nem sempre é o mesmo atendente que realizou a venda 
+            ou o atendimento.<br>
+            <b>6 - Qrcode:</b> Se você tiver um Qrcode de pagamento, insira-o aqui. Isso permitirá que o cliente
+            pague a parcela de forma rápida e conveniente. <br>
+             <b>6.1 - Como usar o Qrcode:</b> Depois de clicar em <b>qrcode</b>, vai aparecer um quadrado com uma
+            imagem de uma folha e uma seta para cima. <br>
+            <b>6.2 - Como enviar o Qrcode:</b> Clique na imagem da folha e navegue até a pasta onde você salvou o qrcode
+            do seu banco. selecione o qrcode e clique em 
+            enviar. O Qrcode será carregado e exibido na tela. <br>
+            <b>OBS:. </b> Antes de clicar em <b>+ folhas</b> preencha todas as informações do carnê, porque se você 
+            clicar em <b>+ folhas</b> antes de preencher, ele vai criar uma nova folha em branco e você terá 
+            que preencher tudo de novo. <br>
+            <b>7 - + folhas:</b> Se você precisar de mais folhas para o seu carnê, clique no botão <b>+ folhas</b>. 
+            Isso permitirá que você adicione páginas extras ao seu carnê, já com as datas futuras e os campos obrigatórios
+            preenchidos.<br>
+            <b>8 - Imprimir:</b> Depois de preencher todas as informações e adicionar as folhas necessárias, 
+            clique no botão <b>Imprimir</b>. Isso abrirá a janela de impressão do seu navegador, onde você poderá 
+            escolher a impressora e as configurações de impressão. Apenas click em salvar e você escolherá onde salvar ou imprimir.<br>
         </p>
     </main>
 </body>
+
 </html>
