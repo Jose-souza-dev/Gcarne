@@ -90,6 +90,7 @@ main.folha {
     height: 1140px;
     background-color: #fff;
     border: 1px solid #ccc;
+    box-shadow: 2px 2px 4px #a5a5a5;
     margin: 10px auto;
 }
 
