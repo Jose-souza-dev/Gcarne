@@ -63,12 +63,9 @@ onAuthStateChanged(auth, async (user) => {
     let hasAccess = localStorage.getItem('gcarne_access_token') === 'valid_user';
 
     if (user) {
-        // Se o usuário está logado mas não tem o token local, vamos verificar no banco
         if (!hasAccess) {
             console.log("Verificando vínculo de e-mail no banco de dados...");
-
             try {
-                // Procura nas coleções "codigo" e "codigos"
                 const colecoes = ["codigo", "codigos"];
                 let vinculado = false;
 
@@ -83,7 +80,6 @@ onAuthStateChanged(auth, async (user) => {
                 }
 
                 if (vinculado) {
-                    console.log("Vínculo encontrado! Liberando acesso automático.");
                     localStorage.setItem('gcarne_access_token', 'valid_user');
                     hasAccess = true;
                 }
@@ -92,14 +88,12 @@ onAuthStateChanged(auth, async (user) => {
             }
         }
 
-        // Redirecionamentos baseados no acesso
         if (!hasAccess) {
             if (!isAccessPage) window.location.href = "acesso.html";
         } else {
             if (isLoginPage || isAccessPage) window.location.href = "criar_carne.html";
         }
     } else {
-        // Deslogado -> Só login
         if (isCreatePage || isAccessPage) window.location.href = "login.html";
     }
 });
