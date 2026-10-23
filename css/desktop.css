@@ -13,92 +13,118 @@
 
 header.cabecalho {
     width: 100%;
-    height: 60px;
-    /* background: yellow; */
-    border-bottom: 1px solid #ccc;
+    height: 32px;
+    background: #4c4c4c;
+    border-bottom: 1px solid #7a7a7a;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 nav.top {
     width: 60%;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 nav.top ul {
-    width: 100%;
+    width: 40%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 nav.top ul li {
-    width: 120px;
-    padding: 0 5px;
-    border-right: 1px solid #0026ff;
-    /* background-color: #fff; */
+    width: 60px;
+    padding: 0 3px;
+    border-radius: 6px;
+    /*background-color: #fff;*/
     text-align: center;
+}
+
+nav.top ul li:hover {
+    background-color: #636363;
 }
 
 nav.top ul a {
     text-decoration: none;
-    color: #0026ff;
+    color: #e1e1e1;
+    font-size: 12px;
 }
 
 /* área de botões do menu para carnê */
 
 .menu-carne {
-    width: 60%;
-    height: 50px;
-    /* background:  blue; */
+    width: 36px;
+    height: 405px;
+    background: #4c4c4c;
+    border-right:  1px solid #7a7a7a;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px auto;
-    gap: 10px;
+    margin: 0 10px 0 0;
+    gap: 20px;
 }
 
 
 .btn-menu {
-    width: 140px;
+    width: 30px;
     height: 30px;
-    background-color: #0026ff;
+    background-color: #4c4c4c;
     border-radius: 5px;
     color: #fff;
     border: none;
     font-weight: 600;
-    transition: .3s;
+    transition: .2s;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-menu:hover {
-    background: #0026FF;
-    color: yellow;
-    border-radius: 20px;
-    border-bottom: 2px solid rgb(94, 94, 94);
+    width: 30px;
+    height: 30px;
+    background: #595959;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
 }
+
+/*SECTION DESKTOP*/
+.desktop{
+    background: #333;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+}
+
+/*------FIM DA DESKTOP ------------------------*/
 
 
 /* chegamos a área da folha principal*/
 
 main.folha {
     width: 810px;
-    height: 1140px;
+    min-height: 1140px;
+    height: auto;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 2px 2px 4px #a5a5a5;
-    margin: 10px auto;
+    margin: 60px auto;
+    padding-top: 30px;
 }
 
 .picture {
     width: 100px;
     aspect-ratio: 1/1;
     background: rgb(243, 243, 243);
-    background-image: url(../images/file.png);
+    background-image: url(../images/add-qrcode.png);
     background-size: 90%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -116,7 +142,7 @@ main.folha {
 .picture:hover {
     border: 1px dashed #4b66ff;
     background: rgb(243, 243, 243);
-    background-image: url(../images/file.png);
+    background-image: url(../images/add-qrcode.png);
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -135,11 +161,11 @@ main.folha {
 }
 
 section.folinha {
-    width: 85%;
+    width: 90%;
     background-color: #fff;
     border: 1px solid #ccc;
-    margin: 10px 38px;
-    padding: 10px 10px 0 38px;
+    margin: 8px auto;
+    padding: 6px 10px 4px 38px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -168,24 +194,24 @@ div.cliente {
     width: 250px;
     border: none;
     border-bottom: 1px solid #ccc;
-    margin: 10px 0;
+    margin: 4px 0;
     outline: none;
 }
 
 
 div.container_qrcode {
-    width: 25%;
-    height: 240px;
+    width: 20%;
+    height: 180px;
     border: 1px solid #ccc;
     font-size: 12px;
-    margin-top: -10px;
+    margin-top: -5px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 p#aviso {
-    font-size: 11px;
+    font-size: 8px;
     color: #555;
     text-align: center;
     font-style: italic;
@@ -224,11 +250,13 @@ body.login-page {
 .brand-side {
     position: relative;
     flex: 1.2;
-    background: #069; /* Sua Cor Base */
+    background: #069;
+    /* Sua Cor Base */
     background: linear-gradient(135deg, #069 0%, #034566 100%);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente o conteúdo */
+    justify-content: center;
+    /* Centraliza verticalmente o conteúdo */
     padding: 60px;
     color: #ffffff;
 }
@@ -261,13 +289,15 @@ body.login-page {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 40px; /* Reduzi o espaço excessivo */
+    margin-bottom: 40px;
+    /* Reduzi o espaço excessivo */
 }
 
 .logo-dot {
     width: 12px;
     height: 12px;
-    background-color: #4ad111; /* Sua cor verde */
+    background-color: #4ad111;
+    /* Sua cor verde */
     border-radius: 50%;
     display: inline-block;
 }
@@ -312,7 +342,8 @@ body.login-page {
 }
 
 .form-header p {
-    color: #858585; /* Sua cor cinza */
+    color: #858585;
+    /* Sua cor cinza */
     font-size: 0.95rem;
 }
 
@@ -362,7 +393,8 @@ body.login-page {
 .separator span {
     padding: 0 12px;
     font-size: 0.85rem;
-    color: #858585; /* Sua cor cinza */
+    color: #858585;
+    /* Sua cor cinza */
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -394,7 +426,8 @@ body.login-page {
 
 .forgot-password {
     font-size: 0.825rem;
-    color: #069; /* Sua cor azul */
+    color: #069;
+    /* Sua cor azul */
     text-decoration: none;
     font-weight: 500;
 }
@@ -414,13 +447,15 @@ body.login-page {
 }
 
 .input-group input:focus {
-    border-color: #069; /* Foco usando a cor azul */
+    border-color: #069;
+    /* Foco usando a cor azul */
 }
 
 /* Botão de Enviar (Uso da cor verde para conversão/sucesso) */
 .btn-submit {
     width: 100%;
-    background-color: #4ad111; /* Sua cor verde */
+    background-color: #4ad111;
+    /* Sua cor verde */
     color: #ffffff;
     border: none;
     padding: 14px;
@@ -433,7 +468,8 @@ body.login-page {
 }
 
 .btn-submit:hover {
-    background-color: #3cb30c; /* Tom levemente mais escuro do seu verde para o hover */
+    background-color: #3cb30c;
+    /* Tom levemente mais escuro do seu verde para o hover */
 }
 
 .btn-submit:active {
@@ -448,11 +484,13 @@ body.login-page {
 
 .form-footer p {
     font-size: 0.9rem;
-    color: #858585; /* Sua cor cinza */
+    color: #858585;
+    /* Sua cor cinza */
 }
 
 .form-footer a {
-    color: #069; /* Sua cor azul */
+    color: #069;
+    /* Sua cor azul */
     text-decoration: none;
     font-weight: 600;
 }
@@ -463,3 +501,75 @@ body.login-page {
 
 /*AREA DE LOGIN*/
 
+/* CONFIGURAÇÃO DE IMPRESSÃO */
+@page {
+    size: A4 portrait;
+    margin: 10mm 8mm;
+}
+
+@media print {
+    html, body {
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        overflow: visible !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    header.cabecalho,
+    .menu-carne,
+    nav,
+    #btn-logout {
+        display: none !important;
+    }
+
+    .desktop {
+        background: transparent !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        width: 100% !important;
+    }
+
+    main.folha {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 auto !important;
+        padding: 4px 0 0 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    section.folinha {
+        margin: 6px auto !important;
+        padding: 6px 10px 4px 20px !important;
+        border: 1px solid #333333 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        background-color: #ffffff !important;
+    }
+
+    .entrada {
+        margin: 3px 0 !important;
+        border: none !important;
+        border-bottom: 1px solid #333333 !important;
+        background: transparent !important;
+        color: #000000 !important;
+    }
+
+    div.container_qrcode {
+        height: 190px !important;
+        border: 1px solid #333333 !important;
+    }
+
+    div.empresa {
+        border-right: 2px dashed #666666 !important;
+    }
+}

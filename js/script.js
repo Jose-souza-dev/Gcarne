@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. Função Triplicar Folha
+    // 4. Função quadruplicar Folha
     const btnTriplicar = document.getElementById('btn-triplicar');
     if (btnTriplicar) {
         btnTriplicar.addEventListener('click', () => {
@@ -82,6 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Por favor, preencha a data de vencimento na primeira folha.");
                 return;
             }
+
+            // Limpar cópias anteriores caso o botão seja clicado mais de uma vez
+            const folinhasAtuais = containerPai.querySelectorAll('.folinha');
+            folinhasAtuais.forEach((f, idx) => {
+                if (idx > 0) f.remove();
+            });
 
             const dataOriginal = elDtvenc.value;
 

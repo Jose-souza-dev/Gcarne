@@ -12,92 +12,99 @@
     <header class="cabecalho">
         <nav class="top">
             <ul>
-                <li><a href="index.html" class="destaque">Gcarnê</a></li>
-                <li><a href="como_utilizar.html">Como usar</a></li>
-                <li><a href="criar_carne.html">Criar carnê</a></li>
+                <li><a href="index.html" class="destaque">Logo</a></li>
+                <li><a href="criar_carne.html">Criar</a></li>
                 <li><a href="#" id="btn-logout">Sair</a></li>
+                <li><a href="como_utilizar.html">Aprender</a></li>
             </ul>
         </nav>
     </header>
-    <section class="menu-carne">
-        <button id="btn-nome" class="btn-menu">Nome</button>
-        <button id="btn-valor" class="btn-menu">Valor</button>
-        <button id="btn-dt_venc" class="btn-menu">Data venc</button>
-        <button id="btn-dt_pag" class="btn-menu">Data pag</button>
-        <button id="btn-aten" class="btn-menu">Atendente</button>
-        <button id="btn-qrcode" class="btn-menu">Qrcode</button>
-        <button id="btn-triplicar" class="btn-menu">+ folhas</button>
-        <button id="btn-fechar" class="btn-menu">Imprimir</button>
-    </section>
-    <main class="folha">
-        <section class="folinha">
-            <div class="empresa" id="empresa">
-                <label for="nome" class="displayNone">
-                    Nome: <br>
-                    <input type="text" id="nome" class="entrada">
-                </label>
-                <label for="valor" class="displayNone">
-                    Valor: <br>
-                    <input type="number" id="valor" class="entrada">
-                </label>
-                <label for="dtvenc" class="displayNone">
-                    Data venc: <br>
-                    <input type="date" id="dtvenc" class="entrada">
-                </label>
-                <label for="dtpag" class="displayNone">
-                    Data pag: <br>
-                    <input type="text" id="dtpag" class="entrada">
-                </label>
-                <label for="atendente" class="displayNone">
-                    Atendente: <br>
-                    <input type="text" id="atendente" class="entrada">
-                </label>
 
-
-                <!-- fim do lado empresa -->
-
-
-
-            </div>
-            <div class="cliente" id="cliente">
-                <label for="nome2" class="displayNone">
-                    Nome: <br>
-                    <input type="text" id="nome2" class="entrada">
-                </label>
-                <label for="valor2" class="displayNone">
-                    Valor: <br>
-                    <input type="number" id="valor2" class="entrada">
-                </label>
-                <label for="dtvenc2" class="displayNone">
-                    Data venc: <br>
-                    <input type="date" id="dtvenc2" class="entrada">
-                </label>
-                <label for="dtpag2" class="displayNone">
-                    Data pag: <br>
-                    <input type="text" id="dtpag2" class="entrada">
-                </label>
-                <label for="atendente2" class="displayNone">
-                    Atendente: <br>
-                    <input type="text" id="atendente2" class="entrada">
-                </label>
-            </div>
-            <div class="container_qrcode displayNone" id="container_qrcode">
-                <br>
-                <p>
-                    Pagar com Pix.
-                </p>
-                <label for="picture__input" class="picture" tabindex="0">
-                    <span class="picture__image"></span>
-                </label>
-                <input type="file" name="" accept="image/*" id="picture__input" class="picture__input">
-                <br>
-                <p id="aviso">
-                    Mesmo pagando com pix você deve guardar o comprovante para uma <br>
-                    próxima cobrança.
-                </p>
-            </div>
+    <section class="desktop">
+        <section class="menu-carne">
+            <button id="btn-nome" class="btn-menu"><img src="images/add-cliente.png" title="Adicionar cliente"></button>
+            <button id="btn-valor" class="btn-menu"><img src="images/add-valor.png" title="Adicionar valor"></button>
+            <button id="btn-dt_venc" class="btn-menu"><img src="images/add-data-vecimento.png"
+                    title="Data de vencimento"></button>
+            <button id="btn-dt_pag" class="btn-menu"><img src="images/add-data-pg.png"
+                    title="Data de pagamento"></button>
+            <button id="btn-aten" class="btn-menu"><img src="images/add-atendente.png"
+                    title="Adicionar atendente"></button>
+            <button id="btn-qrcode" class="btn-menu"><img src="images/add-qrcode.png" title="Adicionar qrcode"></button>
+            <button id="btn-triplicar" class="btn-menu"><img src="images/mais-folhas.png"
+                    title="Adicionar mais folhinhas"></button>
+            <button id="btn-fechar" class="btn-menu"><img src="images/imprimir.png" title="Imprimir"></button>
         </section>
-    </main>
+        <main class="folha">
+            <section class="folinha">
+                <div class="empresa" id="empresa">
+                    <label for="nome" class="displayNone">
+                        Nome: <br>
+                        <input type="text" id="nome" class="entrada">
+                    </label>
+                    <label for="valor" class="displayNone">
+                        Valor: <br>
+                        <input type="number" id="valor" class="entrada">
+                    </label>
+                    <label for="dtvenc" class="displayNone">
+                        Data venc: <br>
+                        <input type="date" id="dtvenc" class="entrada">
+                    </label>
+                    <label for="dtpag" class="displayNone">
+                        Data pag: <br>
+                        <input type="text" id="dtpag" class="entrada">
+                    </label>
+                    <label for="atendente" class="displayNone">
+                        Atendente: <br>
+                        <input type="text" id="atendente" class="entrada">
+                    </label>
+
+
+                    <!-- fim do lado empresa -->
+
+
+
+                </div>
+                <div class="cliente" id="cliente">
+                    <label for="nome2" class="displayNone">
+                        Nome: <br>
+                        <input type="text" id="nome2" class="entrada">
+                    </label>
+                    <label for="valor2" class="displayNone">
+                        Valor: <br>
+                        <input type="number" id="valor2" class="entrada">
+                    </label>
+                    <label for="dtvenc2" class="displayNone">
+                        Data venc: <br>
+                        <input type="date" id="dtvenc2" class="entrada">
+                    </label>
+                    <label for="dtpag2" class="displayNone">
+                        Data pag: <br>
+                        <input type="text" id="dtpag2" class="entrada">
+                    </label>
+                    <label for="atendente2" class="displayNone">
+                        Atendente: <br>
+                        <input type="text" id="atendente2" class="entrada">
+                    </label>
+                </div>
+                <div class="container_qrcode displayNone" id="container_qrcode">
+                    <p>
+                        Pagar com Pix.
+                    </p>
+                    <label for="picture__input" class="picture" tabindex="0">
+                        <span class="picture__image"></span>
+                    </label>
+                    <input type="file" name="" accept="image/*" id="picture__input" class="picture__input">
+                    <br>
+                    <p id="aviso">
+                        Mesmo pagando com pix você deve guardar o comprovante para uma <br>
+                        próxima cobrança.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </section>
+
 
     <script src="js/script.js" defer></script>
     <script type="module" src="js/auth-handler.js"></script>
